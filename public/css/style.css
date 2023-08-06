@@ -1,0 +1,18 @@
+@import url(https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css);
+a, a:hover {
+  text-decoration: none;
+}
+body {
+  font-family: Nunito, sans-serif;
+  background-color: #FCF8FF;
+}
+.navbar-brand img {
+  height: 20px;
+  border-right: 1px solid rgb(105, 105, 105);
+}
+.profile-img {
+  max-width: 40px;
+}
+.navbar-nav .nav-item .nav-link {
+  color: black;
+}

@@ -1,0 +1,84 @@
+<div class="container" style="margin-top: 3%;">
+  <div class="row">
+    <div class="col-8">
+      <img
+        src="/images/posts/<%= post.image %>"
+        class="w-100 rounded img-fluid"
+        style="max-height: 80vh"
+      />
+    </div>
+    <div class="col-4">
+      <div>
+        <div class="d-flex align-items-center">
+          <div class="pr-3">
+            <img
+              src="/images/profiles/<%= postUser.image %>"
+              class="rounded-circle profile-img"
+            />
+          </div>
+          <div>
+            <div class="font-weight-bold">
+              <a href="/profile/<%= postUser.username %>">
+                <span class="text-dark"><%= postUser.username %></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="mt-5">
+          <span class="font-weight-bold">
+            <a href="/profile/<%= postUser.username %>">
+              <span class="text-dark"><%= postUser.username %></span>
+            </a>
+          </span>
+          <%= post.description %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-top: 3%;">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <form
+            method="post"
+            action="/posts/<%= post._id %>/comments/create"
+            id="new-comment-form"
+          >
+            <div class="form-group row">
+              <label for="comment" class="col-md-4 col-form-label text-md-right"
+                >Comment here...</label
+              >
+              <div class="col-md-6">
+                <textarea
+                  name="comment"
+                  id="comment"
+                  class="form-control"
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <div class="form-group row mb-0">
+              <div class="col-md-8 offset-md-4">
+                <button type="submit" class="btn btn-primary">Comment</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-bottom: 3%;">
+  <% comments.forEach(comment => { %>
+    <div style="margin-top: 5px; border-bottom: 1px solid gray;">
+      <h5><a href="/profile/<%= comment.user %>"><%= comment.user %></a></h5>
+      <span><%= comment.createdAt.toLocaleDateString() %></span>
+      <h6><%= comment.description %></h6>
+    </div>
+  <% }); %>
+</div>

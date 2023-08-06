@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/css/profile.css" />
+<header>
+    <div class="profileContainer">
+        <div class="profile">
+            <div class="profile-image">
+                <img src="/images/profiles/<%= currentUser.image %>" alt="Profile Image">
+            </div>
+            <div class="profile-user-settings">
+                <h1 class="profile-user-name"><%= currentUser.name %></h1>
+                <% if(isLoggedIn) { %>
+                    <% if(user && user._id != currentUser._id) { %>
+                    <% const following = user.following;
+                       const action = following.includes(currentUser._id) ? 'unfollow' : 'follow';
+                    %>
+                     <button class="profileBtn post-btn" data-action="<%= action %>" data-follower="<%= user._id %>" data-following="<%= currentUser._id %>" id="follow-btn">Follow</button>
+                    <% } %>  
+                 <% } %> 
+                 <br />
+                <% if(user && user._id == currentUser._id) { %>
+                    <a href="/posts/create">
+                        <button class="profileBtn post-btn">New Post</button>
+                    </a>
+                    <a href="/profile/<%= currentUser.username %>/edit">
+                        <button class="profileBtn post-btn">Edit Profile</button>
+                    </a>
+                <% } %>
+            </div>
+            <div class="profile-stats">
+                <h5 style="margin-bottom: 15px;">
+                    <a href=""><%= currentUser.url %></a>
+                </h5>
+                <ul>
+                    <li><span class="profile-stat-count"><%= currentUser.posts.length %></span> Posts</li>
+                    <li><span class="profile-stat-count"><%= currentUser.followers.length %></span> Followers</li>
+                    <li><span class="profile-stat-count"><%= currentUser.following.length %></span> Following</li>
+                </ul>
+            </div>
+            <div class="profile-bio">
+                <p><span class="profile-real-name"><%= currentUser.name %></span> <%= currentUser.description %></p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="gallery">
+            <% if(posts.length > 0) {
+                posts.forEach(post => {
+            %>    
+            <div class="gallery-item" tabindex="0">
+                <a href="/posts/<%= post._id %>">
+                    <img src="/images/posts/<%= post.image %>" class="gallery-image" alt="">
+                </a>
+            </div>    
+            <% });
+            } %>
+            
+        </div>
+    </div>
+</main>
